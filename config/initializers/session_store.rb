@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-WooulAdmin::Application.config.session_store :cookie_store, key: '_wooul_admin_session'
+WooulBack::Application.config.session_store :cookie_store, key: '_wooul_back_session'

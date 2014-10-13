@@ -19,7 +19,8 @@ class CreateAccountProducts < ActiveRecord::Migration
       t.integer  :status, default: 0
       t.integer  :min_limit, default: 1000
       t.integer  :max_limit, default: 100000
-
+      t.string :repayment_method, :default => "profit"
+      t.integer :each_repayment_period, :default => 30
       t.timestamps
     end
   end

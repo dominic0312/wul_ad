@@ -5,7 +5,7 @@ gem 'rails', '4.0.3'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-gem 'mysql2'
+# gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -44,20 +44,16 @@ group :development, :test do
 end
 
 gem 'devise'
-gem 'therubyracer'
+#gem 'therubyracer'
 gem 'ransack'
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'will_paginate', '~> 3.0'
-gem 'paperclip', '~> 3.0'
 gem 'best_in_place', :git => 'git://github.com/bernat/best_in_place.git'
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 gem "haml-rails"
 gem 'jquery-turbolinks'
 # gem 'protobuf'
 # gem 'rack-rpc'
-gem 'sidekiq'
-gem 'sinatra', require: false
-gem 'slim'
 #gem 'airbrake'
 #gem 'unicorn', :require => false
 #gem 'mina', :require => false
