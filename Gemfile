@@ -54,7 +54,7 @@ gem "haml-rails"
 gem 'jquery-turbolinks'
 # gem 'protobuf'
 # gem 'rack-rpc'
-#gem 'airbrake'
+gem 'airbrake'
 #gem 'unicorn', :require => false
 #gem 'mina', :require => false
 #gem 'mina-unicorn', :require => false
