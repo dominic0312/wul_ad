@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141014035623) do
+=======
+ActiveRecord::Schema.define(version: 20141013083658) do
+>>>>>>> b733d18f4bbaf448bc64dabef1de05273dce51b8
 
   create_table "account_accounts", force: true do |t|
     t.integer  "user_id"
@@ -24,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141014035623) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "account_histories", force: true do |t|
     t.string   "action"
     t.decimal  "amount",       precision: 14, scale: 2
@@ -36,6 +41,8 @@ ActiveRecord::Schema.define(version: 20141014035623) do
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> b733d18f4bbaf448bc64dabef1de05273dce51b8
   create_table "account_invest_principals", force: true do |t|
     t.integer  "account_sub_invest_id"
     t.datetime "refund_time"
