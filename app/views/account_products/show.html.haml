@@ -1,0 +1,22 @@
+= link_to '返回产品列表', account_products_path
+
+- dict = {"profit" => "只付利息",
+           "profit_principal" => "本息均付"}
+%table.table.table-bordered.table-striped.table-hover
+  %thead
+    %tr
+      %th 条目
+      %th 内容
+  %tbody
+    %tr
+      %td
+        = "产品编号"
+      %td
+        = @object.deposit_number
+    %tr
+      %td
+        = "产品类型"
+      %td
+        = @object.product_type
+
+

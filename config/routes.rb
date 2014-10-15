@@ -7,6 +7,8 @@ WooulBack::Application.routes.draw do
 	root to: 'homes#index'
 	resources :homes
   resources :account_records
+  resources :account_products
+  resources :account_sub_invests
 	resources :users
 	resources :employees
 end

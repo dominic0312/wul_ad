@@ -1,0 +1,31 @@
+.container
+  %h4 产品列表
+  %table.table.table-hover
+    %thead
+      %tr
+        %th 产品编号
+        %th 当前金额
+        %th 开始时间
+        %th 年化利率
+        %th 回款周期
+        %th 回款期数
+        %th 当前期数
+        %th 转让费率
+        %th
+    %tbody
+      - @collection.each do |rec|
+        %tr
+          %td
+            %a{:href => account_product_path(rec.id)}
+              = rec.deposit_number
+          %td= rec.fixed_invest_amount
+          %td= rec.join_date
+          %td= rec.annual_rate
+          %td= rec.repayment_period
+          %td
+            12
+          %td= rec.fee
+  .invest-pager-container
+    .invest_pagination
+      = will_paginate @collection, :container => false
+  %br
