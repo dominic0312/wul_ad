@@ -4,12 +4,13 @@ class AccountAccount < ActiveRecord::Base
   def reduce_balance(amount, operation, obj)
     self.balance -= amount
     self.save!
+    history = AccountHistory.new(:amount => amount, :action => operation, :account_id => self.uinfo_id, :direction => "in" )
   end
 
   def add_balance(amount, operation, obj)
-     logger.info("the principal of #{amount} is added to account, and now is #{self.balance}")
     self.balance += amount
     self.save!
+    history = AccountHistory.new(:amount => amount, :action => operation, :account_id => self.uinfo_id, :direction => "out" )
   end
 
 

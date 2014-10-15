@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013083658) do
+ActiveRecord::Schema.define(version: 20141014035623) do
 
   create_table "account_accounts", force: true do |t|
     t.integer  "user_id"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(version: 20141013083658) do
     t.decimal  "frozen_balance",  default: 0.0
     t.decimal  "total_estate",    default: 0.0
     t.integer  "uinfo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "account_histories", force: true do |t|
+    t.string   "action"
+    t.decimal  "amount",       precision: 14, scale: 2
+    t.integer  "account_id"
+    t.string   "account_name"
+    t.string   "direction"
+    t.string   "product_name"
+    t.string   "asset_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
