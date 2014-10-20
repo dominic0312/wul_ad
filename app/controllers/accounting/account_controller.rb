@@ -37,16 +37,6 @@ module Accounting
       end
     end
 
-    def create_invest(params)
-
-    end
-
-
-    # self.onsale = true
-    # self.resell_price = self.amount * (100 - rate) /100
-    # self.discount_rate = rate
-    # self.save!
-
 
     def onsale_invest(params)
       invest = AccountSubInvest.find(params[:op_asset_id]) rescue nil
@@ -70,8 +60,6 @@ module Accounting
     def buy_invest(params)
       invest = AccountSubInvest.find(params[:op_asset_id]) rescue nil
       buyer_account = AccountAccount.find_by uinfo_id: params[:uinfo_id] rescue nil
-
-
       if invest
         amount = invest.resell_price
         seller_account = invest.account_sub_product.account_account
