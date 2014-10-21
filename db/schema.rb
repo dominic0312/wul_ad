@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020094409) do
+ActiveRecord::Schema.define(version: 20141014035623) do
 
   create_table "account_accounts", force: true do |t|
     t.integer  "user_id"
@@ -48,29 +48,6 @@ ActiveRecord::Schema.define(version: 20141020094409) do
     t.integer  "account_sub_invest_id"
     t.datetime "refund_time"
     t.decimal  "refund_amount",         precision: 14, scale: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "account_operations", force: true do |t|
-    t.string   "op_action"
-    t.string   "op_name"
-    t.string   "operator"
-    t.string   "user_id"
-    t.boolean  "op_result",        default: false
-    t.integer  "op_result_code",   default: 0
-    t.integer  "integer",          default: 0
-    t.decimal  "op_amount"
-    t.integer  "op_asset_id"
-    t.decimal  "op_result_value"
-    t.integer  "user_info_id"
-    t.integer  "uinfo_id"
-    t.integer  "op_account_id"
-    t.string   "op_resource_name"
-    t.integer  "op_resource_id"
-    t.string   "operation_id"
-    t.decimal  "op_result_value2"
-    t.decimal  "uinfo_id2"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -144,18 +121,18 @@ ActiveRecord::Schema.define(version: 20141020094409) do
   create_table "account_sub_invests", force: true do |t|
     t.integer  "account_sub_product_id"
     t.string   "loan_number"
-    t.decimal  "amount",                 precision: 12, scale: 2
+    t.decimal  "amount",                 precision: 14, scale: 2, default: 0.0
     t.integer  "status",                                          default: 0
     t.boolean  "onsale",                                          default: false
     t.decimal  "discount_rate",                                   default: 0.0
     t.integer  "account_product_id"
-    t.decimal  "resell_price"
+    t.decimal  "resell_price",           precision: 14, scale: 2, default: 0.0
+    t.decimal  "remain_principal",       precision: 14, scale: 2, default: 0.0
+    t.integer  "current_period",                                  default: 0
+    t.decimal  "annual_rate",            precision: 6,  scale: 2, default: 0.0
+    t.decimal  "fixed_pp_amount",        precision: 14, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "remain_principal"
-    t.integer  "current_period"
-    t.decimal  "annual_rate"
-    t.decimal  "fixed_pp_amount",        precision: 14, scale: 2, default: 0.0
   end
 
   create_table "account_sub_products", force: true do |t|

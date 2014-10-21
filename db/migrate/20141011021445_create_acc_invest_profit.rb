@@ -5,6 +5,7 @@ class CreateAccInvestProfit < ActiveRecord::Migration
       t.datetime :refund_time
       t.decimal :refund_amount, :precision => 14, :scale => 2
       t.timestamps
+
     end
   end
 end
