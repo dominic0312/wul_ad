@@ -47,7 +47,7 @@ module Accounting
            return {:op_result => false, :op_result_code => 9}
          else
            invest.onsale = true
-           invest.resell_price = invest.amount * (100 - rate) /100 - invest.account_product.fee
+           invest.resell_price = invest.amount * (100 - rate) /100 + invest.account_product.fee
            invest.discount_rate = rate
            invest.save!
            return {:op_result => true, :op_result_code => 0, :op_result_value => invest.resell_price}
@@ -178,6 +178,10 @@ module Accounting
 
 
     def withdraw_account(params)
+
+    end
+
+    def pay_profit(params)
 
     end
 
