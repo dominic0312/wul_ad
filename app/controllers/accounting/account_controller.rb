@@ -48,6 +48,8 @@ module Accounting
          else
            invest.onsale = true
            invest.resell_price = invest.amount * (100 - rate) /100 + invest.account_product.fee
+           logger.info("resell price is :#{invest.resell_price}, rate is: #{rate}");
+           logger.info("params is : #{params}");
            invest.discount_rate = rate
            invest.save!
            return {:op_result => true, :op_result_code => 0, :op_result_value => invest.resell_price}
