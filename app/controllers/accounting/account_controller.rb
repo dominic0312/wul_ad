@@ -2,6 +2,12 @@ module Accounting
   class AccountController < ApplicationController
     skip_before_filter :verify_authenticity_token
 
+
+    def test_inter
+      logger.info(params)
+      render :json => "ok"
+    end
+
     def execute_cmd
       cmd = params[:op_action] + "_" + params[:op_name]
       res = send(cmd, params)
