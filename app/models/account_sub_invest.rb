@@ -19,7 +19,7 @@ class AccountSubInvest < ActiveRecord::Base
   def process_profit(profits, rate)
     profit = AccountInvestProfit.new
     profit_amount = self.calculate_profit(rate)
-    profit.refund_amount = profit_amount
+    profit.refund_amount = profit_amount.round(2)
     profit.refund_time = Time.now
     profit.account_sub_invest_id = self.id
     # profit.save!
