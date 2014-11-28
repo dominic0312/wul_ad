@@ -10,22 +10,27 @@ class AccountSubInvest < ActiveRecord::Base
     self.annual_rate = product.annual_rate
     self.current_period = 0
     if product.repayment_method == "profit_principal"
-      month_rate = self.annual_rate / 12 /100
-      self.fixed_pp_amount =  (self.amount * month_rate * (1 + month_rate) ** product.repayment_period) / (((1 + month_rate) ** product.repayment_period) - 1)
+      period_rate = product.each_repayment_period * self.annual_rate / 365 /100
+      self.fixed_pp_amount = (self.amount * period_rate * (1 + period_rate) ** product.repayment_period) / (((1 + period_rate) ** product.repayment_period) - 1)
     end
     self.save!
   end
 
-  def process_profit(profits, rate)
+  def process_profit(profits, rate, period_number)
     profit = AccountInvestProfit.new
     profit_amount = self.calculate_profit(rate)
     profit.refund_amount = profit_amount.round(2)
     profit.refund_time = Time.now
+    profit.profit_number = period_number + 1
     profit.account_sub_invest_id = self.id
-    # profit.save!
+    profit.save!
     self.account_sub_product.account_account.add_balance(profit_amount, "profit", self.loan_number)
     profits << profit
     logger.info("the profit of #{self.loan_number} + with id#{self.id} is #{profit.refund_amount}")
+  end
+
+  def cal_period_number
+
   end
 
   def calculate_profit(rate)
@@ -42,7 +47,10 @@ class AccountSubInvest < ActiveRecord::Base
       self.amount
     else
       period_rate = self.account_product.each_repayment_period * self.annual_rate / 365 /100
-      self.fixed_pp_amount - self.calculate_profit(period_rate)
+      prin_amount = self.fixed_pp_amount - self.calculate_profit(period_rate)
+      self.remain_principal -= prin_amount
+      self.save!
+      return prin_amount
     end
   end
 
@@ -60,9 +68,11 @@ class AccountSubInvest < ActiveRecord::Base
     principal.refund_amount = principal_amount
     principal.refund_time = Time.now
     principal.account_sub_invest_id = self.id
+    principal.principal_number = period + 1
     principal.save!
 
     self.account_sub_product.account_account.add_balance(principal_amount, "principal", self.loan_number)
+
 
     principals << principal
     # logger.info("the principal of #{self.loan_number} + with id#{self.id} is #{principal.refund_amount}")

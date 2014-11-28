@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014035623) do
+ActiveRecord::Schema.define(version: 20141127022739) do
 
   create_table "account_accounts", force: true do |t|
     t.integer  "user_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20141014035623) do
     t.decimal  "refund_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "principal_number",      default: 0
   end
 
   create_table "account_invest_profits", force: true do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141014035623) do
     t.decimal  "refund_amount",         precision: 14, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profit_number",                                  default: 0
   end
 
   create_table "account_product_principals", force: true do |t|
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141014035623) do
     t.decimal  "refund_amount",      precision: 14, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "principal_number",                            default: 0
   end
 
   create_table "account_product_profits", force: true do |t|
@@ -67,31 +70,34 @@ ActiveRecord::Schema.define(version: 20141014035623) do
     t.decimal  "decimal",            precision: 14, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profit_number",                               default: 0
   end
 
   create_table "account_products", force: true do |t|
     t.string   "deposit_number"
-    t.decimal  "total_amount",          precision: 12, scale: 2
-    t.decimal  "annual_rate",           precision: 5,  scale: 2
+    t.decimal  "total_amount",             precision: 12, scale: 2
+    t.decimal  "annual_rate",              precision: 5,  scale: 2
     t.integer  "repayment_period"
-    t.decimal  "each_repayment_amount", precision: 12, scale: 2
-    t.decimal  "free_invest_amount",    precision: 10, scale: 2
-    t.decimal  "fixed_invest_amount",   precision: 10, scale: 2, default: 0.0
+    t.decimal  "each_repayment_amount",    precision: 12, scale: 2
+    t.decimal  "free_invest_amount",       precision: 10, scale: 2
+    t.decimal  "fixed_invest_amount",      precision: 10, scale: 2, default: 0.0
     t.date     "join_date"
     t.date     "expiring_date"
     t.string   "premature_redemption"
-    t.integer  "fee",                                            default: 1
-    t.string   "product_type",                                   default: "fixed"
-    t.string   "stage",                                          default: "open"
+    t.integer  "fee",                                               default: 1
+    t.string   "product_type",                                      default: "fixed"
+    t.string   "stage",                                             default: "open"
     t.datetime "profit_date"
     t.datetime "principal_date"
-    t.integer  "status",                                         default: 0
-    t.integer  "min_limit",                                      default: 1000
-    t.integer  "max_limit",                                      default: 100000
-    t.string   "repayment_method",                               default: "profit"
-    t.integer  "each_repayment_period",                          default: 30
+    t.integer  "status",                                            default: 0
+    t.integer  "min_limit",                                         default: 1000
+    t.integer  "max_limit",                                         default: 100000
+    t.string   "repayment_method",                                  default: "profit"
+    t.integer  "each_repayment_period",                             default: 30
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "current_profit_period",                             default: 0
+    t.integer  "current_principal_period",                          default: 0
   end
 
   create_table "account_profits", force: true do |t|
@@ -121,18 +127,20 @@ ActiveRecord::Schema.define(version: 20141014035623) do
   create_table "account_sub_invests", force: true do |t|
     t.integer  "account_sub_product_id"
     t.string   "loan_number"
-    t.decimal  "amount",                 precision: 14, scale: 2, default: 0.0
-    t.integer  "status",                                          default: 0
-    t.boolean  "onsale",                                          default: false
-    t.decimal  "discount_rate",                                   default: 0.0
+    t.decimal  "amount",                   precision: 14, scale: 2, default: 0.0
+    t.integer  "status",                                            default: 0
+    t.boolean  "onsale",                                            default: false
+    t.decimal  "discount_rate",                                     default: 0.0
     t.integer  "account_product_id"
-    t.decimal  "resell_price",           precision: 14, scale: 2, default: 0.0
-    t.decimal  "remain_principal",       precision: 14, scale: 2, default: 0.0
-    t.integer  "current_period",                                  default: 0
-    t.decimal  "annual_rate",            precision: 6,  scale: 2, default: 0.0
-    t.decimal  "fixed_pp_amount",        precision: 14, scale: 2, default: 0.0
+    t.decimal  "resell_price",             precision: 14, scale: 2, default: 0.0
+    t.decimal  "remain_principal",         precision: 14, scale: 2, default: 0.0
+    t.integer  "current_period",                                    default: 0
+    t.decimal  "annual_rate",              precision: 6,  scale: 2, default: 0.0
+    t.decimal  "fixed_pp_amount",          precision: 14, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "current_profit_period",                             default: 0
+    t.integer  "current_principal_period",                          default: 0
   end
 
   create_table "account_sub_products", force: true do |t|

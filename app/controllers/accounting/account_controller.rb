@@ -97,7 +97,8 @@ module Accounting
       if product
          if product.has_profit?
             profits = product.pay_profits
-            return {:op_result => true, :op_result_code => 0, :op_obj => profits, :op_result_value => product.current_profit.round(2), :op_resource_name => product.deposit_number }
+            return {:op_result => true, :op_result_code => 0, :op_obj => profits, :op_result_value => product.current_profit.round(2), :op_resource_name => product.deposit_number,
+            :op_profit_period => product.current_profit_period}
          else
            return {:op_result => false, :op_result_code => 12}
          end
@@ -111,14 +112,14 @@ module Accounting
       if product
         if product.has_principal?
           principals = product.pay_principals
-          return {:op_result => true, :op_result_code => 0, :op_obj => principals, :op_result_value => product.current_principal.round(2), :op_resource_name => product.deposit_number }
+          return {:op_result => true, :op_result_code => 0, :op_obj => principals, :op_result_value => product.current_principal.round(2), :op_resource_name => product.deposit_number,
+                  :op_principal_period => product.current_principal_period}
         else
           return {:op_result => false, :op_result_code => 12}
         end
       else
         return {:op_result => false, :op_result_code => 4}
       end
-
     end
 
 
