@@ -47,7 +47,6 @@ module Accounting
     def onsale_invest(params)
       invest = AccountSubInvest.find(params[:op_asset_id]) rescue nil
       rate = params[:op_amount].to_f
-      logger.info("asset id is #{params[:op_asset_id]}")
       if invest
          if invest.onsale
            return {:op_result => false, :op_result_code => 9}
